@@ -1,11 +1,23 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&display=swap');
 
+
 body {
   margin: 0;
   font-family: sans-serif;
   overflow-x: hidden;
   background: #faf3e8;
+background: linear-gradient(0deg,rgb(255, 255, 255) 0%, rgba(250, 243, 232, 1) 100%);
 }
+
+.content-wrapper {
+  max-width: 1200px; /* or whatever width matches your 13" screen content width */
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 20px;  /* optional, small padding inside */
+  padding-right: 20px; /* optional */
+  box-sizing: border-box;
+}
+
 
 .subtitle {
   font-size: 22px;
@@ -25,6 +37,7 @@ p {
   font-family: "DM Serif Display", serif;
   font-weight: 200;
   font-style: normal;
+  line-height: 1.5;
 }
 
 .p-text {
@@ -39,15 +52,20 @@ h1, h2, h3, h4 {
   font-style: normal;
 }
 
+
 .scene {
   width: 100%;
   position: relative;
 }
 
 .intro {
-  height: 60vh;
-  text-align: center;  
-}
+  margin: 50px auto 0; /* top 50px, horizontally auto centered */
+  max-width: 600px;     /* or whatever width fits your design */
+  padding: 0 20px;      /* horizontal padding */
+  text-align: center;
+  }
+
+
 
 .section-frame {
   padding: 50px;
@@ -56,7 +74,6 @@ h1, h2, h3, h4 {
 .sun-wrapper {
   position: fixed;
   top: 20vh;
-  left: 5vw;
   z-index: -1;
 }
 
@@ -73,7 +90,6 @@ h1, h2, h3, h4 {
   width: 100%;
   height: 100vh;
   z-index: 1;
-  /*overflow-x: hidden;*/
 }
 
 .fade-bottom {
@@ -94,11 +110,18 @@ h1, h2, h3, h4 {
   height: 100vh;
 }
 
+.gradient-layer {
+  width: 100%;
+  height: 120px;
+  background: WHITE;
+background: linear-gradient(0deg,rgb(255, 255, 255) 0%, rgba(250, 243, 232, 1) 100%);
+}
+
 /* Tree and lake images - full height */
 .graphic img {
   position: absolute;
   bottom: -200px;
-  height: 120vh;
+  height: 120%;
   width: auto;
   object-fit: contain;
   pointer-events: none;
@@ -143,6 +166,7 @@ h1, h2, h3, h4 {
   width: 100%;
   max-width: 500px;
   margin: 0 auto;
+  font-size: 1.8rem;
 }
 
 .fade-overlay {
@@ -159,7 +183,7 @@ h1, h2, h3, h4 {
 
 /* Each paragraph block */
 .step {
-  margin: 50vh 0;
+  /* margin: 50vh 0; */
   font-size: 1.5rem;
   padding: 2rem;
   text-align: center;
@@ -175,7 +199,39 @@ h1, h2, h3, h4 {
 .next-section {
   background: #faf3e8;
   min-height: 100vh;
-  padding-top:200px;
+  padding-top: 280px;
+}
+
+.text-wrapper {
+  padding: 0 80px;
+}
+
+@media (max-width: 768px) {
+  .tree-front.left,
+  .tree-front.right {
+    width: 50vw;              /* Shrink trees to fit in viewport */
+    max-width: 200px;         /* Cap size */
+  }
+
+  .tree-front.left {
+    left: -10vw;              /* Slight overlap without overflow */
+  }
+
+  .tree-front.right {
+    right: -10vw;
+  }
+
+  .graphic img {
+    height: 110vh;            /* Slightly smaller image height on mobile */
+  }
+
+  .intro {
+    margin: 40px 20px 80px;   /* Reduce horizontal margin */
+  }
+
+  .scroll-text {
+    max-width: 90%;
+  }
 }
 
 
@@ -184,7 +240,6 @@ h1, h2, h3, h4 {
   display: flex;
   position: relative;
   background: #faf3e8;
-  min-height: 400vh;
 }
 
 .timeline-content {
@@ -210,22 +265,42 @@ h1, h2, h3, h4 {
   transition: opacity 0.8s ease;
 }
 
+.timeline-scroll {
+  padding-right: 50px;
+  margin-left: -50px;
+  height: 100%;
+}
+
 .timeline-text {
   flex: 1;
-  padding: 4rem 2rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
 .timeline-text .step {
-  margin-bottom: 100vh;
+  margin-bottom: 20vh;
   font-family: "DM Serif Display", serif;
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   max-width: 500px;
   line-height: 1.6;
   color: #333;
 }
+
+.timeline-text .first-step {
+  margin-bottom: 20vh;
+  font-family: "DM Serif Display", serif;
+  max-width: 500px;
+  line-height: 1.6;
+  color: #333;
+}
+/* 
+.timeline-text .last-step {
+    margin-bottom: 0 !important;
+
+} */
+
+
 
 /* Optional: decorative background image or illustration */
 .timeline-image {
@@ -249,7 +324,20 @@ h1, h2, h3, h4 {
 }
 
 /* Unified mobile styles */
+
+/* Unified mobile styles */
 @media screen and (max-width: 768px) {
+
+.intro {
+  margin: 20px 40px;
+}
+
+.sticky-graphic {
+
+  overflow-x: hidden;
+}
+
+
   .only-mobile {
     display: block;
   }
@@ -303,17 +391,6 @@ h1, h2, h3, h4 {
     pointer-events: none;
   }
 
-  .sticky-image-wrapper-mobile::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    background: linear-gradient(to top, #faf3e8 0%, transparent 100%);
-    pointer-events: none;
-  }
-
   #mobile-timeline-image {
     max-height: 100%;
     width: auto;
@@ -344,3 +421,502 @@ h1, h2, h3, h4 {
   pointer-events: none;
    background: #faf3e8;
 }
+
+
+/* Mobile timeline image, always apply */
+.mobile-timeline-image {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: auto;
+  max-width: 100px;
+  object-fit: contain;
+  z-index: 0;
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+/* Ensure non-interactive image layers stay behind and inactive */
+.mobile-timeline-image,
+.sticky-image-wrapper-mobile {
+  pointer-events: none !important;
+  z-index: 4;
+  pointer-events: none;
+   background: #faf3e8;
+}
+
+/* section tank */
+
+.image-container {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+  background: #faf3e8;
+}
+
+.tank-img {
+  width: 90%;
+  display: block;
+}
+
+.target-img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  transition: transform 0.1s ease-out;
+}
+
+/* Reset original flex on .tank-section for desktop */
+.tank-section {
+  display: block; /* For now, switch to block, we'll handle layout in children */
+  padding: 2rem;
+    padding-top: 120px;
+    background: #faf3e8;
+}
+
+/* Desktop styles only */
+@media(min-width: 1024px) {
+  .tank-section {
+    display: block;
+  }
+
+  .text-content {
+    width: 100%;
+    padding: 0 80px;
+  }
+
+  /* The middle row is flex with 2 columns */
+  .middle-row {
+    display: flex;
+    gap: 2rem;
+    margin: 2rem 0; /* add spacing */
+    margin-bottom: 120px;
+  }
+
+  .middle-text {
+    flex: 2;
+  }
+
+  .desktop-image-wrapper {
+    flex: 1;
+    position: relative;
+  }
+
+  .full-width {
+    width: 100%;
+    margin-bottom: 2rem;
+  }
+
+  .map-content {
+    padding: 0 0px 0 300px;
+  }
+
+  .map-content p {
+        padding-left: 0.2rem;
+  }
+
+  .map-content .text-column p {
+        padding-left: 10rem;
+  }
+}
+
+/* Mobile styles - keep current setup */
+@media(max-width: 1023px) {
+  .tank-section {
+    display: block;
+  }
+
+  .middle-row {
+    display: block;
+  }
+
+}
+
+.tank {
+      width: 100%;
+      padding: 0 80px;
+}
+
+/* === MAP SECTION === */
+
+.map-section {
+  position: relative;
+  height: 300vh;
+  background: white;
+}
+
+.scroll-triggers {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.trigger {
+  height: 100vh;
+}
+
+.map-content {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  padding: 0 4rem;
+  box-sizing: border-box;
+  z-index: 1;
+}
+
+.text-column {
+  flex: 3;
+  padding-right: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 2rem;
+}
+
+.map-column {
+  flex: 1;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.map-img {
+  padding-top: 100px;
+  max-height: 450px;
+  width: auto;
+}
+
+/* Lines overlaying the map */
+.line {
+  position: absolute;
+  height: 2px;
+  background-color: hotpink;
+  opacity: 0;
+  transform-origin: left;
+  transition: all 1s ease-in-out;
+}
+
+.line-1 { 
+    width: 320%;
+    top: 270px;
+    right: 100px;
+}
+
+.line-2 {
+    width: 320%;
+    top: 350px;
+    right: 130px;
+    }
+
+.line-3 {
+  top: 430px;
+  right: 150px;
+    width: 300%;
+}
+
+/* Triggered animation */
+.map-section.line-1-active .line-1,
+.map-section.line-2-active .line-2,
+.map-section.line-3-active .line-3 {
+  opacity: 1;
+}
+
+/* trip map section */
+
+.fade-scroll-section {
+  position: relative;
+  background: white;
+}
+
+.fade-sticky-wrapper {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  background: white;
+  pointer-events: none; /* disables accidental clicks during scroll */
+}
+
+.fade-scroll-content {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+  pointer-events: auto;
+}
+
+.fade-top-text,
+.fade-bottom-text {
+  text-align: left;
+}
+
+#fade-image-scroll {
+  max-width: 100%;
+  height: auto;
+  max-height: 60vh;
+  transition: opacity 0.6s ease-in-out;
+  opacity: 1;
+}
+
+/* Invisible triggers driving the scroll */
+.fade-scroll-steps {
+  height: 400vh;
+  position: relative;
+  z-index: 1;
+}
+
+.fade-step {
+  height: 100vh;
+}
+
+/* text section lines */
+
+.text-section {
+  position: relative;
+  padding: 6rem;
+  padding-top: 80px;
+  background: white;
+}
+
+.text-final {
+  padding: 1rem 10rem;
+}
+
+.special-text {
+ position: relative;
+  color: #EDB0B0;
+  padding: 0 0 3rem;
+  font-size: 2rem;
+  line-height: 1.6;
+  max-width: 800px;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.img-text-right {
+  float: right;
+  width: 30%;
+}
+
+
+.img-text-left {
+  float: left;
+  position: relative;
+  z-index: 10;
+      margin-right: 30px;
+      margin-bottom: 50px;
+      margin-left: 60px
+}
+
+.special-text-2 {
+ position: relative;
+  color: #C1B3B3;
+  padding: 2rem;
+  font-size: 2rem;
+  max-width: 800px;
+  text-align: center;
+  margin: 0 auto;
+  font-style: italic;
+}
+
+/* leaf section */
+
+.leaf-sway-section {
+  height: 100%;
+  padding: 20px 100px 100px;
+    height: 100%;
+    background: linear-gradient(180deg, rgb(255 255 255) 0%, rgba(250, 243, 232, 1) 50%, rgb(255 255 255) 100%);
+}
+
+.leaf-images-contain {
+  position: relative;
+}
+
+
+.leaf {
+  height: 350px;
+  transform-origin: center center;
+  transition: transform 0.1s linear;
+}
+
+.leaf-sway-content {
+  flex: 1 1 400px;
+  max-width: 600px;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+.sway-1 {
+    left: 0;
+    margin-right: 30px;;
+    
+}
+
+.sway-2 {
+    left: -40px;
+    top: 30px;
+      position: absolute;
+
+}
+
+.sway-3 {
+  position: absolute;
+}
+
+strong {
+color: #EDB0B0;
+font-style: italic
+}
+
+.special-2 {
+  /* “Certainly. The eucalyptus is a large, impressive, beautiful tree. It has a wonderful scent. Obviously, I also love it. There is something moving about its size and power. And there is of course the historical memory – my father planted eucalyptus trees to drain the swamps. This tree has entered the Jewish heritage as a Zionist symbol. Ironically, the swamps disappeared, and now we are trying to rehabilitate and restore some of them to the landscape. The eucalyptus stayed with us and became a ‘founding father’ of the Israeli environment. But we must always remember that it is an Australian tree. Not one of ours.” */
+
+font-family: 'Newsreader';
+font-style: italic;
+font-weight: 700;
+font-size: 32px;
+background: linear-gradient(360deg, #FFA6A6 0%, #8D4C4C 100%);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+background-clip: text;
+text-fill-color: transparent;
+
+}
+
+.final-section {
+  padding-top: 0;
+}
+
+.sway-3 {
+    left: -120px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .leaf-sway-section {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .leaf-sway-images {
+    flex-direction: row;
+    position: relative;
+    top: auto;
+    margin-bottom: 2rem;
+  }
+
+  .leaf {
+    width: 70px;
+  }
+}
+
+
+
+@media screen and (max-width: 768px) {
+
+
+  .next-section {
+  padding-top: 400px 40px 100px;
+  margin: 0;
+}
+
+
+.fade-bottom {
+  display: none;
+}
+
+ 
+  .desktop-only {
+     display: none !important;
+  }
+
+.map-section {
+  position: relative;
+  height: 300vh;
+  background: white;
+  padding-top: 200px;
+}
+
+  .map-content {
+    flex-direction: row; /* keep row layout */
+    padding: 0 1rem;
+  }
+
+  .text-column {
+    flex: 0 0 85%;
+    width: 85%;
+    padding-right: 1rem;
+    z-index: 2;
+  }
+
+.map-content {
+  overflow-x: hidden;
+}
+
+  .map-column {
+    flex: 0 0 15%;
+    width: 15%;
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none; /* allow text to be interacted with */
+  }
+
+  .map-img {
+    max-height: 100%;
+    width: auto;
+    padding-top: 0;
+    opacity: 0.7;
+    overflow-x:hidden;
+    position: absolute;
+    max-height: 350px;
+
+  }
+
+  .line {
+    opacity: 0;
+    position: absolute;
+    background-color: hotpink;
+    height: 2px;
+    transition: opacity 1s ease-in-out;
+  }
+
+  .line-1 {
+    top: 30%;
+    right: 10%;
+    width: 80vw;
+  }
+
+  .line-2 {
+    top: 50%;
+    right: 10%;
+    width: 80vw;
+  }
+
+  .line-3 {
+    top: 70%;
+    right: 10%;
+    width: 80vw;
+  }
+
+  .map-section.line-1-active .line-1,
+  .map-section.line-2-active .line-2,
+  .map-section.line-3-active .line-3 {
+    opacity: 1;
+  }
+
+}
+
