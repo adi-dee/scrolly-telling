@@ -6,6 +6,7 @@
 });
   
 
+
 window.addEventListener("scroll", () => {
   const scrollY = window.scrollY;
   const sticky = document.querySelector(".sticky-visual");
@@ -78,6 +79,34 @@ document.addEventListener("DOMContentLoaded", () => {
 
   steps.forEach((step) => observer.observe(step));
 });
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  const steps = document.querySelectorAll(".step-mobile2");
+  const image = document.getElementById("mobile-timeline-image2");
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const newSrc = entry.target.dataset.img;
+          image.style.opacity = 0;
+          setTimeout(() => {
+            image.src = newSrc;
+            image.style.opacity = 1;
+          }, 200);
+        }
+      });
+    },
+    {
+      root: null,
+      rootMargin: "0px",
+      threshold: 0.6, // Adjust to fire when text is in center-ish
+    }
+  );
+
+  steps.forEach((step) => observer.observe(step));
+});
 // tank target effect
 
 const container = document.getElementById('interactive-target-desktop');
@@ -115,7 +144,7 @@ window.addEventListener('touchmove', (e) => {
 }, { passive: true });
 
 
-// map section
+// map section destop
 
 document.addEventListener('DOMContentLoaded', () => {
   const triggers = document.querySelectorAll('.map-section .trigger');
@@ -171,3 +200,23 @@ const fadeScroller = scrollama();
     document.querySelector(".sway-3").style.transform =
       `rotate(${Math.sin(scrollY * 0.003) * 3}deg)`;
   });
+
+  // Mobile map section
+
+  const triggers = document.querySelectorAll('.map-section-mobile .trigger');
+const lines = document.querySelectorAll('.map-section-mobile .line');
+
+triggers.forEach((trigger, index) => {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        lines[index].classList.add('visible');
+      }
+    });
+  }, { threshold: 0.5 });
+
+  observer.observe(trigger);
+});
+
+
+  
