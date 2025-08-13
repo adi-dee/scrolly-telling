@@ -883,83 +883,79 @@ strong {
         display: none !important;
     }
 
-    .map-section {
-        position: relative;
-        height: 300vh;
-        background: white;
-    }
+.map-section-mobile {
+    position: relative;
+    background: #fff;
+    padding: 1rem 0 2rem;
+    overflow: visible;          /* ensure stacking context works */
+    z-index: 3;   
+    height: 550vh;        /* keep above previous/next sticky stuff */
+  }
 
-    .map-content {
-        flex-direction: row;
-        /* keep row layout */
-        padding: 0 1rem;
-    }
+  .map-section-mobile .map-content {
+    display: block;             /* not flex on mobile */
+    position: relative;
+  }
 
-    .text-column {
-        flex: 0 0 85%;
-        width: 85%;
-        padding-right: 1rem;
-        z-index: 2;
-    }
+  .map-section-mobile .text-column {
+    display: block;
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
 
-    .map-content {
-        overflow-x: hidden;
-    }
+  /* Sticky map box */
+  .map-section-mobile .map-column {
+    position: sticky;
+    top: 0;                     /* stick to top of the viewport */
+    height: 100vh;              /* reserve full screen for sticky area */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;           /* prevents previous/next peeking through */
+    margin: 2rem 0;
+    z-index: 4;                 /* above text in this section */
+  }
 
-    .map-column {
-        flex: 0 0 15%;
-        width: 15%;
-        position: absolute;
-        right: 0;
-        top: 0;
-        height: 100%;
-        z-index: 1;
-        pointer-events: none;
-        /* allow text to be interacted with */
-    }
+  .map-section-mobile .map-img {
+    max-height: 70vh;
+    width: auto;
+    display: block;
+  }
 
-    .map-img {
-        max-height: 100%;
-        width: auto;
-        padding-top: 0;
-        opacity: 0.7;
-        overflow-x: hidden;
-        position: absolute;
-        max-height: 350px;
+  /* Lines overlay the image */
+  .map-section-mobile .line {
+    position: absolute;
+    left: 50%;
+    width: 80vw;
+    height: 2px;
+    background: hotpink;
+    transform: translateX(-50%) scaleX(0);
+    transform-origin: left center;
+    opacity: 0;
+    transition: transform .6s ease, opacity .6s ease;
+    z-index: 5;                 /* above the map image */
+    pointer-events: none;
+  }
+  .map-section-mobile .line-1 { top: 25%; }
+  .map-section-mobile .line-2 { top: 50%; }
+  .map-section-mobile .line-3 { top: 75%; }
+  .map-section-mobile .line.visible {
+    opacity: 1;
+    transform: translateX(-50%) scaleX(1);
+  }
 
-    }
+  /* Triggers must contribute height (not absolute) */
+  .map-section-mobile .scroll-triggers {
+    position: relative;         /* was absolute in desktop version */
+  }
+  .map-section-mobile .trigger {
+    height: 100vh;              /* each trigger = one screen of scroll */
+  }
 
-    .line {
-        opacity: 0;
-        position: absolute;
-        background-color: hotpink;
-        height: 2px;
-        transition: opacity 1s ease-in-out;
-    }
+  /* Optional: make later sticky sections not overlap while you’re in map section */
+  .fade-sticky-wrapper { z-index: 1; }
 
-    .line-1 {
-        top: 30%;
-        right: 10%;
-        width: 80vw;
-    }
-
-    .line-2 {
-        top: 50%;
-        right: 10%;
-        width: 80vw;
-    }
-
-    .line-3 {
-        top: 70%;
-        right: 10%;
-        width: 80vw;
-    }
-
-    .map-section.line-1-active .line-1,
-    .map-section.line-2-active .line-2,
-    .map-section.line-3-active .line-3 {
-        opacity: 1;
-    }
 
     .text-final {
       padding: 0;

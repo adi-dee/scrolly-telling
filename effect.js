@@ -203,20 +203,18 @@ const fadeScroller = scrollama();
 
   // Mobile map section
 
-  const triggers = document.querySelectorAll('.map-section-mobile .trigger');
-const lines = document.querySelectorAll('.map-section-mobile .line');
+  const mobileMapTriggers = document.querySelectorAll('.map-section-mobile .trigger');
+    const mobileMapLines = document.querySelectorAll('.map-section-mobile .line');
+    if (mobileMapTriggers.length && mobileMapLines.length) {
+      mobileMapTriggers.forEach((trigger, index) => {
+        const io = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting && mobileMapLines[index]) {
+              mobileMapLines[index].classList.add('visible');
+            }
+          });
+        }, { threshold: 0.5 });
+        io.observe(trigger);
 
-triggers.forEach((trigger, index) => {
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        lines[index].classList.add('visible');
-      }
-    });
-  }, { threshold: 0.5 });
-
-  observer.observe(trigger);
-});
-
-
-  
+        });
+    }
