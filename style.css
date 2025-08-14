@@ -406,7 +406,8 @@ h1, h2, h3, h4 {
         display: flex;
         align-items: center;
         justify-content: center;
-        z-index: 0;   
+        z-index: 0; 
+        padding-top: 20px;  
        }
 
     #mobile-timeline-image {
@@ -437,7 +438,8 @@ h1, h2, h3, h4 {
     pointer-events: none !important;
     z-index: 4;
     pointer-events: none;
-    background: #faf3e8;
+    background: linear-gradient(0deg,rgba(255, 255, 255, 0) 0%, rgba(250, 243, 232, 1) 10%);
+    padding-bottom: 40px;
 }
 
 
@@ -460,7 +462,6 @@ h1, h2, h3, h4 {
     pointer-events: none !important;
     z-index: 4;
     pointer-events: none;
-    background: #faf3e8;
 }
 
 .mobile-timeline-image{
@@ -921,6 +922,8 @@ strong {
     max-height: 70vh;
     width: auto;
     display: block;
+    padding-top: 0;
+    margin-right: -180px;
   }
 
   /* Lines overlay the image */
@@ -937,9 +940,43 @@ strong {
     z-index: 5;                 /* above the map image */
     pointer-events: none;
   }
-  .map-section-mobile .line-1 { top: 25%; }
-  .map-section-mobile .line-2 { top: 50%; }
-  .map-section-mobile .line-3 { top: 75%; }
+  .map-section-mobile .line-1 { 
+        margin-left: 0px;
+        width: 120%;
+        margin-top: -80px;
+ }
+
+    .line-1 p{
+        margin: 0;
+        margin-top: -20px;
+        font-size: 0.8rem;
+    }
+
+  .map-section-mobile .line-2 { 
+        width: 90%;
+        margin-left: -40px;
+        margin-top: -80px;
+   }
+
+    .line-2 p{
+        margin: 0;
+        margin-top: -20px;
+        font-size: 0.8rem;
+    }
+
+  .map-section-mobile .line-3 { 
+        width: 90%;
+        margin-left: -40px;
+        margin-top: -140px;
+   }
+
+
+    .line-3 p{
+        margin: 0;
+        margin-top: 5px;
+        font-size: 0.8rem;
+    }
+
   .map-section-mobile .line.visible {
     opacity: 1;
     transform: translateX(-50%) scaleX(1);
@@ -963,6 +1000,11 @@ strong {
 
     .text-section {
         padding: 20px 40px;
+    }
+
+    .special-text {
+        font-size: 1.5rem;
+        padding:0px 40px;
     }
 
     .special-2 {
